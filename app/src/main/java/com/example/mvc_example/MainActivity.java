@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         progressDialog = new ProgressDialog(this);
         button = findViewById(R.id.button);
-        textView = findViewById(R.id.texto);
-
-        progressDialog.setTitle("Loading...");
+        textView = findViewById(R.id.textView);
+        //progress_label = Loading...
+        progressDialog.setTitle(getResources().getString(R.string.progress_label));
         progressDialog.setProgress(0);
         progressDialog.setCancelable(true);
 
@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         controller = new Controller(new Model(), this);
-        controller.makeApiCall("http://cardfindercdmx.com/personal/get_book.php");
+        //url = http://cardfindercdmx.com/personal/get_book.php
+        controller.makeApiCall(BuildConfig.url);
     }
 
 }

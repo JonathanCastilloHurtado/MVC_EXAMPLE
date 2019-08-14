@@ -4,16 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-
+    <!--default_text = Click the button bellow in order to start the Api\'s request-->
     <TextView
-        android:id="@+id/texto"
+        android:id="@+id/textView"
+        android:text="@string/default_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <!--btn_text = Consume Api-->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Consume"
+        android:text="@string/btn_text"
         />
-
 </LinearLayout>
