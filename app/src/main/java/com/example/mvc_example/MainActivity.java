@@ -32,11 +32,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void printResponse(final String response) {
-        Log.d("JOHN", "print response : " + response);
         runOnUiThread(new Runnable() {
             public void run() {
-                Log.d("JOHN", "TERMINA");
                 textView.setText(response);
+                progressDialog.cancel();
+            }
+        });
+    }
+
+    public void printError(final String error) {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                textView.setText(error);
                 progressDialog.cancel();
             }
         });
@@ -46,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         runOnUiThread(new Runnable() {
             public void run() {
-                Log.d("JOHN", "COMIENZA");
                 progressDialog.show();
             }
         });

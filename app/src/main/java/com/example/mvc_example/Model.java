@@ -47,31 +47,26 @@ public class Model extends AsyncTask<Object, String, String> {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                //presenter.prepareError(e);
+                callback.onError(e+"");
             } finally {
                 try {
                     in.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    //presenter.prepareError(e);
+                    callback.onError(e+"");
                 }
             }
             response = stringBuilder.toString();
-            Log.d("JOHN","respuesta : "+response);
             callback.onSuccess(response);
-            //presenter.setResponse(response);
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            //presenter.prepareError(e);
+            callback.onError(e+"");
         } catch (ProtocolException e) {
             e.printStackTrace();
-            //presenter.prepareError(e);
+            callback.onError(e+"");
         } catch (IOException e) {
             e.printStackTrace();
-            //presenter.prepareError(e);
+            callback.onError(e+"");
         }
     }
-
-
-
 }

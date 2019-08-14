@@ -19,7 +19,7 @@ public class Controller  {
 
                     @Override
                     public void onError(String error) {
-
+                        view.printError(error);
                     }
                 }
         );
