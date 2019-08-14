@@ -24,27 +24,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button = findViewById(R.id.button);
         textView = findViewById(R.id.texto);
 
-        model = new Model();
-        view = new MainActivity();
-        controller = new Controller(model, view);
-
         progressDialog.setTitle("Loading...");
         progressDialog.setProgress(0);
         progressDialog.setCancelable(true);
 
         button.setOnClickListener(this);
     }
-    MainActivity view;
-    Model model;
-
 
     public void printResponse(final String response) {
-        Log.d("JOHN","print response : "+response);
+        Log.d("JOHN", "print response : " + response);
         runOnUiThread(new Runnable() {
             public void run() {
-                Log.d("JOHN","TERMINA");
-               // textView.setText(response);
-               //progressDialog.cancel();
+                Log.d("JOHN", "TERMINA");
+                textView.setText(response);
+                progressDialog.cancel();
             }
         });
     }
@@ -53,11 +46,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         runOnUiThread(new Runnable() {
             public void run() {
-                Log.d("JOHN","COMIENZA");
-                //progressDialog.show();
+                Log.d("JOHN", "COMIENZA");
+                progressDialog.show();
             }
         });
+        controller = new Controller(new Model(), this);
         controller.makeApiCall("http://cardfindercdmx.com/personal/get_book.php");
     }
+
 }
 
