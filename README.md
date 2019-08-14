@@ -1,2 +1,2 @@
 # MVC_EXAMPLE
-pryect inspired in https://androvaid.com/android-mvc-example/
+proyect inspired in https://androvaid.com/android-mvc-example/
