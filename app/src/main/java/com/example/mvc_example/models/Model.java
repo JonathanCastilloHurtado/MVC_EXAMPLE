@@ -38,7 +38,7 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 
 	@Override
 	protected NetworkResponse doInBackground(Object... objects) {
-		callback = (OnResult) objects[1];
+		callback = (OnResult) objects[0];
 		return makeServiceCall();
 	}
 
