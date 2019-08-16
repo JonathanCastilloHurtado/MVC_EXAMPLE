@@ -13,10 +13,11 @@ import com.example.mvc_example.models.Model;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button button;
-    TextView textView;
+    private Button button;
+    private TextView textView;
+    private ProgressDialog progressDialog;
     Controller controller;
-    ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

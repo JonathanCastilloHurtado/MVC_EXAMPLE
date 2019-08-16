@@ -13,6 +13,8 @@ import java.net.URL;
 
 import androidx.annotation.NonNull;
 
+import com.example.mvc_example.BuildConfig;
+
 // Esto model no debería extender directamente del AsynTaks, por lo que te comentaba de que posiblemente sean muchos task a los que hay que consumir
 // Ejemplo loginEmail. loginFacebook, etc, etc ...
 public class Model extends AsyncTask<Object, String, NetworkResponse> {
@@ -21,19 +23,12 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 	private OnResult callback;
 
 	public interface OnResult {
-
 		void onSuccess(String result);
-
-		void onError(String error);
+		void onError(Exception error);
 	}
 
-	/// El model o el Build.url --> Debe tener un path principal (http://cardfindercdmx.com)
-	/// y los tasks denen tener parte del path por ejemplo: /personal/get_book.php
-	/// y así separar en task diferentes peticiones con su respectiva URL + path.
-
 	public Model() {
-		// TODO quitar harcodeo (Se que yo lo puse) pero te quería ejemplificar porqye lo deberías que tener en otro lado por lo que te puse arriba
-		this.reqURL = "http://cardfindercdmx.com/personal/get_book.php";
+		this.reqURL = BuildConfig.url+ "personal/get_book.php";
 	}
 
 	@Override
@@ -50,23 +45,10 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 				callback.onSuccess(response.getMessage());
 			}
 		} else {
-			String errorMsg = (response == null) ? "" : getErrorParser(response.getException());
 			if (callback != null) {
-				callback.onError(errorMsg);
+				callback.onError(response.getException());
 			}
 		}
-	}
-
-	private String getErrorParser(@NonNull Exception exception) {
-		//TODO Los textos de errores no deben de estar hacrdoeados
-		// Mételos a un string o decir que el API quizá de proveer esos mensajes de error
-		String errorMsg;
-		if (exception instanceof FileNotFoundException) {
-			errorMsg = "Archivo no encontrado";
-		} else {
-			errorMsg = "Error no identificado";
-		}
-		return errorMsg;
 	}
 
 	private NetworkResponse makeServiceCall() {
@@ -80,18 +62,14 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			StringBuilder stringBuilder = new StringBuilder();
 			String line;
-
 			while ((line = reader.readLine()) != null) {
 				stringBuilder.append(line).append('\n');
 			}
-
 			networkResponse.setMessage(stringBuilder.toString());
 			networkResponse.setSuccess(true);
-			return networkResponse;
 		} catch (Exception e) {
 			networkResponse.setException(e);
 			networkResponse.setSuccess(false);
-			return networkResponse;
 		} finally {
 			try {
 				if (in != null) {
@@ -101,5 +79,6 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 				e.printStackTrace();
 			}
 		}
+		return networkResponse;
 	}
 }
