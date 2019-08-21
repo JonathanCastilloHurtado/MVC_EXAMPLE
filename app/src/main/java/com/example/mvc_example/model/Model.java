@@ -49,7 +49,7 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 
 	private NetworkResponse makeServiceCall() {
 		InputStream in = null;
-		NetworkResponse networkResponse = new NetworkResponse();
+		NetworkResponse response = new NetworkResponse();
 		try {
 			URL url = new URL(reqURL);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -61,11 +61,11 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 			while ((line = reader.readLine()) != null) {
 				stringBuilder.append(line).append('\n');
 			}
-			networkResponse.setMessage(stringBuilder.toString());
-			networkResponse.setSuccess(true);
+			response.setMessage(stringBuilder.toString());
+			response.setSuccess(true);
 		} catch (Exception e) {
-			networkResponse.setException(e);
-			networkResponse.setSuccess(false);
+			response.setException(e);
+			response.setSuccess(false);
 		} finally {
 			try {
 				if (in != null) {
@@ -75,6 +75,6 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 				e.printStackTrace();
 			}
 		}
-		return networkResponse;
+		return response;
 	}
 }
