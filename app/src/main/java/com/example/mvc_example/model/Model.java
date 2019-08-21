@@ -61,11 +61,11 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 			while ((line = reader.readLine()) != null) {
 				stringBuilder.append(line).append('\n');
 			}
-			response.setMessage(stringBuilder.toString());
 			response.setSuccess(true);
+			response.setMessage(stringBuilder.toString());
 		} catch (Exception e) {
-			response.setException(e);
 			response.setSuccess(false);
+			response.setException(e);
 		} finally {
 			try {
 				if (in != null) {
@@ -73,6 +73,8 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+				response.setSuccess(false);
+				response.setException(e);
 			}
 		}
 		return response;
