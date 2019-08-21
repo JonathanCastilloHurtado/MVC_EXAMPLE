@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mvc_example.controllers.Controller;
-import com.example.mvc_example.models.Model;
+import com.example.mvc_example.model.Model;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,12 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button.setOnClickListener(this);
     }
 
-    // Quite todas las llamadas al runOnUiThread.
-    // El problema era que querías regresar la respuesta en el doInBackground de la petición y eso no es lo correcto.
-    // Acuerdate que el AsyncTask tiene 3 métodos fundamentales (onPreExecute // doInBackground // onPostExecute)
-    // * onPreExecute  --> Corre en el MainThread y es por si necesitas hacer validaciones antes de doInBackground
-    // * doInBackground --> Thread secundario --> Peticiones / BAse de datos // Procesos pesados en 2 plano y después le pasa la respuesta al onPostExecute
-    // * onPostExecute --> Corre en el MainThread y es que último que decide que hacer con la respuesta en este caso mandar llamar el callback.
     public void printResponse(final String response) {
         textView.setText(response);
         progressDialog.cancel();

@@ -1,25 +1,21 @@
-package com.example.mvc_example.models;
+package com.example.mvc_example.model;
 
 import android.os.AsyncTask;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import androidx.annotation.NonNull;
-
 import com.example.mvc_example.BuildConfig;
 
-// Esto model no debería extender directamente del AsynTaks, por lo que te comentaba de que posiblemente sean muchos task a los que hay que consumir
-// Ejemplo loginEmail. loginFacebook, etc, etc ...
 public class Model extends AsyncTask<Object, String, NetworkResponse> {
 
 	private String reqURL;
+	private final String urlEndpoint="personal/get_book.php";
 	private OnResult callback;
 
 	public interface OnResult {
@@ -28,7 +24,7 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 	}
 
 	public Model() {
-		this.reqURL = BuildConfig.url+ "personal/get_book.php";
+		this.reqURL = BuildConfig.url+urlEndpoint;
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.example.mvc_example.models;
+package com.example.mvc_example.model;
 
 public class NetworkResponse {
 

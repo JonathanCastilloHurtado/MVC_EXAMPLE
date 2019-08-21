@@ -1,7 +1,6 @@
-package com.example.mvc_example.controllers;
+package com.example.mvc_example;
 
-import com.example.mvc_example.MainActivity;
-import com.example.mvc_example.models.Model;
+import com.example.mvc_example.model.Model;
 
 public class Controller  {
 
