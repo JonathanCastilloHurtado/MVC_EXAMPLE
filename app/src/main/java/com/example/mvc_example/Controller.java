@@ -13,7 +13,10 @@ public class Controller  {
     }
 
     public void makeApiCall() {
-        model.execute(new Model.OnResult() {
+        final String urlEndpoint="personal/get_book.php";
+
+        //url = http://cardfindercdmx.com/
+        model.execute(BuildConfig.url+urlEndpoint,new Model.OnResult() {
                     @Override
                     public void onSuccess(String result) {
                         view.printResponse(result);

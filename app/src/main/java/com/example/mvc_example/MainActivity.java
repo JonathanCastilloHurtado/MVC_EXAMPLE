@@ -32,12 +32,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button.setOnClickListener(this);
     }
 
-    public void printResponse(final String response) {
+    public void printResponse(String response) {
         textView.setText(response);
         progressDialog.cancel();
     }
 
-    public void printError(final String error) {
+    public void printError(String error) {
         textView.setText(error);
         progressDialog.cancel();
     }
