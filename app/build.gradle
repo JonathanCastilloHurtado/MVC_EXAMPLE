@@ -14,7 +14,7 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            buildConfigField "String", "url", "\"http://cardfindercdmx.com/\""
+            buildConfigField "String", "url", "\"http://johncastle.com.mx/\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

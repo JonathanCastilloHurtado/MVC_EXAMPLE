@@ -13,9 +13,9 @@ public class Controller  {
     }
 
     public void makeApiCall() {
-        final String urlEndpoint="personal/get_book.php";
+        final String urlEndpoint="apis/get_book.php";
 
-        //url = http://cardfindercdmx.com/
+        //url = http://johncastle.com.mx/
         model.execute(BuildConfig.url+urlEndpoint,new Model.OnResult() {
                     @Override
                     public void onSuccess(String result) {
